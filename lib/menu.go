@@ -1,6 +1,11 @@
 package lib
 
-import "fmt"
+import (
+	"fmt"
+	"os"
+
+	"github.com/olekukonko/tablewriter"
+)
 
 type Menu struct {
 	Id          int
@@ -41,5 +46,43 @@ func FoodsMenu() {
 			Stock:       30,
 		},
 	}
-	fmt.Println(Menu)
+	// fmt.Println(Menu)
+	// fmt.Printf("%#v\n", Menu)
+	// for x := range Menu {
+	// 	fmt.Printf(
+	// 		"Name  : %s\nId : %s\nAge   : %d\n", Menu[x].Id, Menu[x].Name, Menu[x].Descriptiom,
+	// 	)
+	// }
+
+	// w := tabwriter.NewWriter(&io.OffsetWriter{}.Stdout, 0, 0, 2, ' ', 0)
+	// w := tabwriter.NewWriter(os.Stdout, 0, 0, 2, ' ', 0)
+	// fmt.Fprintln(w, "ID\tNAME\tDESCRIPTION")
+
+	// for _, u := range Menu {
+	// 	fmt.Fprintf(w, "%s\t%s\t%d\n", u.Id, u.Name, u.Descriptiom)
+	// }
+	// w.Flush()
+
+	table := tablewriter.NewWriter(os.Stdout)
+
+	table.SetHeader([]string{
+		"ID",
+		"NAME",
+		"DESCRIPTION",
+		"PRICE",
+		"STOCK",
+	})
+
+	for _, m := range Menu {
+		table.Append([]string{
+			fmt.Sprintf("%d", m.Id),
+			m.Name,
+			m.Descriptiom,
+			fmt.Sprintf("Rp %d", m.Price),
+			fmt.Sprintf("%d", m.Stock),
+		})
+	}
+
+	table.Render()
+
 }
