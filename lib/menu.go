@@ -15,7 +15,46 @@ type Menu struct {
 	Stock       int
 }
 
-func FoodsMenu() {
+func mainMenuList() {
+	defer fmt.Println("0. Keluar")
+	fmt.Println("1. Lihat Menu")
+	fmt.Println("2. Pesan Menu")
+	fmt.Println("3. Lihat Keranjang")
+	fmt.Println("4. Lihat Histori Order")
+}
+
+func MainMenu() {
+	mainMenuList()
+	var input string
+	fmt.Scanln(&input)
+	// fmt.Println(input)
+	switch input {
+	case "1":
+		fmt.Println("berhasil menekan satu")
+		FoodsMenu()
+		MainMenu()
+	case "2":
+		AddMenu()
+		FoodsMenu()
+		// MainMenu()
+	case "3":
+		fmt.Println("berhasil menekan tiga")
+		MainMenu()
+	case "4":
+		fmt.Println("berhasil menekan empat")
+		MainMenu()
+	case "0":
+		ClearScreen()
+		fmt.Println("Sampai Jumpa Lagi")
+		os.Exit(0)
+	default:
+		fmt.Println("Mohon Masukan input yang benar ya:)")
+		MainMenu()
+	}
+
+}
+
+func FoodsMenu() []Menu {
 	Menu := []Menu{
 		{
 			Id:          1,
@@ -46,23 +85,6 @@ func FoodsMenu() {
 			Stock:       30,
 		},
 	}
-	// fmt.Println(Menu)
-	// fmt.Printf("%#v\n", Menu)
-	// for x := range Menu {
-	// 	fmt.Printf(
-	// 		"Name  : %s\nId : %s\nAge   : %d\n", Menu[x].Id, Menu[x].Name, Menu[x].Descriptiom,
-	// 	)
-	// }
-
-	// w := tabwriter.NewWriter(&io.OffsetWriter{}.Stdout, 0, 0, 2, ' ', 0)
-	// w := tabwriter.NewWriter(os.Stdout, 0, 0, 2, ' ', 0)
-	// fmt.Fprintln(w, "ID\tNAME\tDESCRIPTION")
-
-	// for _, u := range Menu {
-	// 	fmt.Fprintf(w, "%s\t%s\t%d\n", u.Id, u.Name, u.Descriptiom)
-	// }
-	// w.Flush()
-
 	table := tablewriter.NewWriter(os.Stdout)
 
 	table.SetHeader([]string{
@@ -82,7 +104,17 @@ func FoodsMenu() {
 			fmt.Sprintf("%d", m.Stock),
 		})
 	}
-
 	table.Render()
 
+	return Menu
+}
+
+func AddMenu() {
+	fmt.Println("Masukan id untuk memasukan kedalam keranjang")
+	var input string
+	fmt.Scanln(&input)
+	fmt.Println(input)
+	for x := range FoodsMenu() {
+		fmt.Println(x + 1)
+	}
 }
