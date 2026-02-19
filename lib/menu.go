@@ -15,6 +15,8 @@ type Menu struct {
 	Stock       int
 }
 
+var Cart []Menu
+
 func mainMenuList() {
 	defer fmt.Println("0. Keluar")
 	fmt.Println("1. Lihat Menu")
@@ -27,18 +29,17 @@ func MainMenu() {
 	mainMenuList()
 	var input string
 	fmt.Scanln(&input)
-	// fmt.Println(input)
 	switch input {
 	case "1":
-		fmt.Println("berhasil menekan satu")
-		FoodsMenu()
+		ClearScreen()
 		MainMenu()
 	case "2":
 		AddMenu()
 		FoodsMenu()
-		// MainMenu()
+		MainMenu()
 	case "3":
 		fmt.Println("berhasil menekan tiga")
+		ShowMenu()
 		MainMenu()
 	case "4":
 		fmt.Println("berhasil menekan empat")
@@ -105,7 +106,6 @@ func FoodsMenu() []Menu {
 		})
 	}
 	table.Render()
-
 	return Menu
 }
 
@@ -113,8 +113,30 @@ func AddMenu() {
 	fmt.Println("Masukan id untuk memasukan kedalam keranjang")
 	var input string
 	fmt.Scanln(&input)
-	fmt.Println(input)
-	for x := range FoodsMenu() {
-		fmt.Println(x + 1)
+	for _, y := range FoodsMenu() {
+		Cart = append(Cart, y)
 	}
+}
+
+func ShowMenu() {
+	table := tablewriter.NewWriter(os.Stdout)
+	table.SetHeader([]string{
+		"ID",
+		"NAME",
+		"DESCRIPTION",
+		"PRICE",
+		"STOCK",
+	})
+	fmt.Println("Masukan id untuk memasukan kedalam keranjang")
+	for _, m := range Cart {
+		table.Append([]string{
+			fmt.Sprintf("%d", m.Id),
+			m.Name,
+			m.Descriptiom,
+			fmt.Sprintf("Rp %d", m.Price),
+			fmt.Sprintf("%d", m.Stock),
+		})
+	}
+	table.Render()
+	fmt.Println(Cart)
 }
