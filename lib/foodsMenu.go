@@ -10,6 +10,13 @@ import (
 func FoodsMenu() []Menu {
 	Menu := []Menu{
 		{
+			Id:          0,
+			Name:        "",
+			Descriptiom: "",
+			Price:       0,
+			Stock:       0,
+		},
+		{
 			Id:          1,
 			Name:        "Sensasi 1",
 			Descriptiom: "Spaghetti Ayam + Drink",

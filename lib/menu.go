@@ -33,15 +33,10 @@ func MainMenu() {
 		FoodsMenu()
 		MainMenu()
 	case "2":
-		ClearScreen()
+		defer MainMenu()
 		AddMenu()
 		FoodsMenu()
-		ClearScreen()
-		fmt.Println("Data Berhasil Ditambahkan ke keranjang")
-		MainMenu()
 	case "3":
-		// fmt.Println("berhasil menekan tiga")
-		// ShowMenu()
 		ClearScreen()
 		CartFunc()
 		MainMenu()
