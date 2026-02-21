@@ -10,14 +10,10 @@ type History struct {
 
 var HistoryOrderProduct []History
 
-func MenuHistoriOrder() {
-	defer fmt.Println("0. ")
-	fmt.Println("1. ")
-	fmt.Println("2. ")
-	fmt.Println("3. ")
-}
-
 func HistoryOrder() {
-	MenuHistoriOrder()
-	fmt.Println("test")
+	// MenuHistoriOrder()
+	var input string
+	fmt.Scanln(&input)
+
+	fmt.Println(input)
 }

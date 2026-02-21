@@ -43,6 +43,30 @@ func CartFunc() {
 	Checkout()
 }
 
+func CheckoutMenu() {
+	defer fmt.Println("0. Kembali")
+	fmt.Println("1. Checkout")
+	fmt.Println("2. Hapus Keranjang")
+}
+
 func Checkout() {
-	fmt.Println("checkout belum jadi")
+	CheckoutMenu()
+
+	var input string
+	fmt.Scanln(&input)
+
+	fmt.Println(input)
+
+	switch input {
+	case "0":
+		MainMenu()
+	case "1":
+		MainMenu()
+	case "2":
+		MainMenu()
+	default:
+		ClearScreen()
+		fmt.Println("Mohon Masukan input yang benar ya:)")
+		MainMenu()
+	}
 }
