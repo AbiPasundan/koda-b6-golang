@@ -7,7 +7,14 @@ import (
 	"github.com/olekukonko/tablewriter"
 )
 
+type Orders struct {
+	Id      int
+	product []Menu
+	Total   int
+}
+
 var HistoryOrders []Orders
+var idOrder int = 1
 
 func CartFunc() {
 	if len(Cart) == 0 {
@@ -52,36 +59,8 @@ func CheckoutMenu() {
 }
 
 func CheckoutRemove() {
-	// empty := []Menu{}
-	// fmt.Println("empty")
-	// fmt.Println(empty)
 	Cart = []Menu{}
 }
-
-type Orders struct {
-	Id      int
-	product []Menu
-}
-
-// func CheckoutProduct() {
-// 	// HistoryOrderProduct = []History{
-// 	// 	{
-// 	// 		Name: "Nama",
-// 	// 	},
-// 	// }
-
-// 	// HistoryOrders := []Orders{
-// 	// }
-
-// 	result := []Orders{
-// 		{
-// 			Id:      1,
-// 			product: Cart,
-// 		},
-// 	}
-
-// 	HistoryOrders = append(HistoryOrders, result...)
-// }
 
 func Checkout() {
 	CheckoutMenu()
@@ -95,14 +74,21 @@ func Checkout() {
 	case "0":
 		MainMenu()
 	case "1":
+		var total int
+		for _, item := range Cart {
+			total += item.Price
+		}
+
 		result := []Orders{
 			{
-				Id:      1,
+				Id:      idOrder,
 				product: Cart,
+				Total:   total,
 			},
 		}
 
 		HistoryOrders = append(HistoryOrders, result...)
+		idOrder++
 		fmt.Println("Berhasil Checkout")
 		CheckoutRemove()
 		MainMenu()
