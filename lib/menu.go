@@ -16,6 +16,7 @@ type Menu struct {
 var Cart []Menu
 
 func mainMenuList() {
+	// fmt.Println(Cart)
 	defer fmt.Println("0. Keluar")
 	fmt.Println("1. Lihat Menu")
 	fmt.Println("2. Pesan Menu")
@@ -43,7 +44,8 @@ func MainMenu() {
 		MainMenu()
 	case "4":
 		HistoryOrder()
-		// MainMenu()
+		// CheckoutProduct()
+		MainMenu()
 	case "0":
 		ClearScreen()
 		fmt.Println("Sampai Jumpa Lagi")

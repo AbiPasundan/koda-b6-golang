@@ -12,8 +12,8 @@ var HistoryOrderProduct []History
 
 func HistoryOrder() {
 	// MenuHistoriOrder()
-	var input string
-	fmt.Scanln(&input)
+	// var input string
+	// fmt.Scanln(&input)
 
-	fmt.Println(input)
+	fmt.Println(HistoryOrders)
 }

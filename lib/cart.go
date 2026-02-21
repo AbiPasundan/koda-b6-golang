@@ -7,6 +7,8 @@ import (
 	"github.com/olekukonko/tablewriter"
 )
 
+var HistoryOrders []Orders
+
 func CartFunc() {
 	if len(Cart) == 0 {
 		fmt.Println("Keranjang masih kosong.")
@@ -56,6 +58,31 @@ func CheckoutRemove() {
 	Cart = []Menu{}
 }
 
+type Orders struct {
+	Id      int
+	product []Menu
+}
+
+// func CheckoutProduct() {
+// 	// HistoryOrderProduct = []History{
+// 	// 	{
+// 	// 		Name: "Nama",
+// 	// 	},
+// 	// }
+
+// 	// HistoryOrders := []Orders{
+// 	// }
+
+// 	result := []Orders{
+// 		{
+// 			Id:      1,
+// 			product: Cart,
+// 		},
+// 	}
+
+// 	HistoryOrders = append(HistoryOrders, result...)
+// }
+
 func Checkout() {
 	CheckoutMenu()
 
@@ -68,6 +95,16 @@ func Checkout() {
 	case "0":
 		MainMenu()
 	case "1":
+		result := []Orders{
+			{
+				Id:      1,
+				product: Cart,
+			},
+		}
+
+		HistoryOrders = append(HistoryOrders, result...)
+		fmt.Println("Berhasil Checkout")
+		CheckoutRemove()
 		MainMenu()
 	case "2":
 		CheckoutRemove()
