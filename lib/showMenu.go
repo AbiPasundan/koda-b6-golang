@@ -14,16 +14,20 @@ func ShowMenu() {
 		"NAME",
 		"DESCRIPTION",
 		"PRICE",
-		"STOCK",
 	})
-	fmt.Println("Masukan id untuk memasukan kedalam keranjang")
+	// tumbal := slices.IndexFunc(Cart, func(i string) true {
+	// 	return i.Cart == 0
+	// })
+	// // cartValue := Cart[2:]
+	// fmt.Println(tumbal)
+	// cartValue := Menu[1:2]
+	// fmt.Println(cartValue)
 	for _, m := range Cart {
 		table.Append([]string{
 			fmt.Sprintf("%d", m.Id),
-			m.Name,
-			m.Descriptiom,
+			fmt.Sprintf("%s", m.Name),
+			fmt.Sprintf("%s", m.Descriptiom),
 			fmt.Sprintf("Rp %d", m.Price),
-			fmt.Sprintf("%d", m.Stock),
 		})
 	}
 	table.Render()

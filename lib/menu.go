@@ -31,6 +31,7 @@ func MainMenu() {
 	case "1":
 		ClearScreen()
 		FoodsMenu()
+		// ShowMenu()
 		MainMenu()
 	case "2":
 		defer MainMenu()
@@ -41,8 +42,8 @@ func MainMenu() {
 		CartFunc()
 		MainMenu()
 	case "4":
-		fmt.Println("berhasil menekan empat")
-		MainMenu()
+		HistoryOrder()
+		// MainMenu()
 	case "0":
 		ClearScreen()
 		fmt.Println("Sampai Jumpa Lagi")

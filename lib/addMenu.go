@@ -36,26 +36,26 @@ func AddMenu() {
 	i, err := strconv.Atoi(input)
 
 	if err != nil {
+		ClearScreen()
 		fmt.Println("Input harus berupa angka")
-		return
 	}
 
 	foods := FoodsMenu()
 
 	if i <= 0 || i >= len(foods) {
+		ClearScreen()
 		fmt.Println("Id tidak ditemukan")
-		return
 	}
 
 	selected := foods[i+1]
 
 	if selected.Stock <= 0 {
+		ClearScreen()
 		fmt.Println("Stok habis")
-		return
 	}
 
 	Cart = append(Cart, selected)
-
+	ClearScreen()
 	fmt.Println("berhasil menambahkan ", selected.Name)
 
 }
