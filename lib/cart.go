@@ -49,6 +49,13 @@ func CheckoutMenu() {
 	fmt.Println("2. Hapus Keranjang")
 }
 
+func CheckoutRemove() {
+	// empty := []Menu{}
+	// fmt.Println("empty")
+	// fmt.Println(empty)
+	Cart = []Menu{}
+}
+
 func Checkout() {
 	CheckoutMenu()
 
@@ -63,6 +70,9 @@ func Checkout() {
 	case "1":
 		MainMenu()
 	case "2":
+		CheckoutRemove()
+		ClearScreen()
+		fmt.Println("Keranjang Berhasil Dikosongkan")
 		MainMenu()
 	default:
 		ClearScreen()
